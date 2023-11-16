@@ -1,10 +1,12 @@
-<ion-header [translucent]="true">
+<!-- <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 3
     </ion-title>
+    <ion-tab-button tab="settings" href="/tabs/settings">
+      <ion-icon aria-hidden="true" name="settings-outline"></ion-icon>
+    </ion-tab-button>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
@@ -13,5 +15,43 @@
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Kalkulator BMI</ion-card-title>
+    </ion-card-header>
+    
+    <ion-grid>
+      <ion-row>
+        <ion-col>Podaj swój wzrost
+          <ion-item>
+            <ion-input [(ngModel)]="height" label="" type="number" placeholder="wzrost (cm)"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>Podaj swoją wagę
+          <ion-item>
+            <ion-input [(ngModel)]="weight" label="" type="number" placeholder="waga (kg)"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-button color="medium" (click)="countBMI()">Oblicz</ion-button>
+      <ion-row>
+        <ion-col></ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+  <ion-card *ngIf="IsResultVisible" [ngStyle]="{'background-color': resultBackground}">
+    <ion-card-header>
+      <ion-card-title><p>Wynik BMI</p> <p>{{BMI}}</p></ion-card-title>
+    </ion-card-header>
+    
+    <ion-grid>
+      <ion-row>
+        <ion-col>{{status}}</ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
 </ion-content>

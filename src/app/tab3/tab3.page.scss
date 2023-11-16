@@ -1,0 +1,40 @@
+ion-icon{
+    width: 30px;
+    height: 30px;
+    float: right;
+
+}
+ion-title{
+    display: inline-block;
+}
+
+ion-tab-button{
+    background-color: transparent;
+    width: auto;
+    height: 100%;
+    float: right;
+}
+
+.item-native{
+    margin: 0;
+}
+
+ion-button{
+    display: block;
+    margin: auto;
+    width: auto;
+    height: auto;
+    margin: 10px;
+    margin-bottom: 0;
+}
+
+p:first-child{
+    display: inline-block;
+}
+p:last-child{
+    float: right;
+}
+
+// ion-col:last-child{
+//     text-align: center;
+// }
