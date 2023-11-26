@@ -35,6 +35,18 @@ p:last-child{
     float: right;
 }
 
+#result{
+    height: 150px;
+    animation-name: show;
+    animation-duration: 0.5s;
+    overflow: hidden;
+}
+
+@keyframes show{
+    from{height: 0px;}
+    to{height: 150px;}
+}
+
 // ion-col:last-child{
 //     text-align: center;
 // }

@@ -42,7 +42,7 @@
     </ion-grid>
   </ion-card>
 
-  <ion-card *ngIf="IsResultVisible" [ngStyle]="{'background-color': resultBackground}">
+  <ion-card id="result" *ngIf="IsResultVisible" [ngStyle]="{'background-color': resultBackground}">
     <ion-card-header>
       <ion-card-title><p>Wynik BMI</p> <p>{{BMI}}</p></ion-card-title>
     </ion-card-header>

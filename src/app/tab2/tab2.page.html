@@ -15,5 +15,65 @@
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Kalkulator zapotrzebowania kalorycznego</ion-card-title>
+    </ion-card-header>
+    
+    <ion-grid>
+      <ion-row>
+        <ion-col>Podaj swój wzrost
+          <ion-item>
+            <ion-input [(ngModel)]="height" label="" type="number" placeholder="wzrost (cm)"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>Podaj swoją wagę
+          <ion-item>
+            <ion-input [(ngModel)]="weight" label="" type="number" placeholder="waga (kg)"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>Podaj swój wiek
+          <ion-item>
+            <ion-input [(ngModel)]="age" label="" type="number" placeholder="wiek"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>Podaj swoją płeć
+          <ion-radio-group [(ngModel)]="gender" value="">
+            <br><ion-radio value="true" aria-label="male">Mężczyzna</ion-radio><br>
+            <ion-radio value="false" aria-label="female">Kobieta</ion-radio>
+          </ion-radio-group>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>Rodzaj aktywności
+          <ion-item>
+            <ion-select [(ngModel)]="activity" label="" label-placement="floating">
+              <ion-select-option value="1.2">Brak aktywności fizycznej</ion-select-option>
+              <ion-select-option value="1.4">Lekka aktywność (aktywność – ok. 2,5 godziny tygodniowo)</ion-select-option>
+              <ion-select-option value="1.6">Średnia aktywność (aktywność – ok. 5 godzin tygodniowo)</ion-select-option>
+              <ion-select-option value="1.8">Wysoka aktywność (aktywność – ok. 7 godzin tygodniowo)</ion-select-option>
+              <ion-select-option value="2">Bardzo wysoka aktywność fizyczna (aktywność – ok. 9,5 godziny tygodniowo)</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-button color="medium" (click)="countDemand()">Oblicz</ion-button>
+      <ion-row>
+        <ion-col></ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+  <ion-card *ngIf="IsResultVisible" [ngStyle]="{'background-color': resultBackground}">
+    <ion-card-header>
+      <ion-card-title><p>Zapotrzebowanie kaloryczne</p> <p>{{demand}} kcal</p></ion-card-title>
+    </ion-card-header>
+  </ion-card>
+
 </ion-content>

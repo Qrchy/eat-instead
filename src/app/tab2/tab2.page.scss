@@ -14,3 +14,32 @@ ion-tab-button{
     height: 100%;
     float: right;
 }
+
+ion-button{
+    display: block;
+    margin: auto;
+    width: auto;
+    height: auto;
+    margin: 10px;
+    margin-bottom: 0;
+}
+
+ion-radio {
+    --border-radius: 4px;
+    --inner-border-radius: 4px;
+
+    --color: #ddd;
+    --color-checked: #15baec;
+  }
+
+  ion-radio.ios::part(container) {
+    width: 20px;
+    height: 20px;
+
+    border: 2px solid #ddd;
+    border-radius: 4px;
+  }
+
+  .radio-checked.ios::part(container) {
+    border-color: #15c4ec;
+  }
