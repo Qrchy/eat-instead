@@ -35,6 +35,7 @@
           </ion-item>
         </ion-col>
       </ion-row>
+      <p id="wrongInput" *ngIf="wrongInput">Któraś z wartości nie została podana</p>
       <ion-button color="medium" (click)="countBMI()">Oblicz</ion-button>
       <ion-row>
         <ion-col></ion-col>

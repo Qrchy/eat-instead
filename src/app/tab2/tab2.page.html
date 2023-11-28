@@ -44,9 +44,9 @@
       </ion-row>
       <ion-row>
         <ion-col>Podaj swoją płeć
-          <ion-radio-group [(ngModel)]="gender" value="">
-            <br><ion-radio value="true" aria-label="male">Mężczyzna</ion-radio><br>
-            <ion-radio value="false" aria-label="female">Kobieta</ion-radio>
+          <ion-radio-group [(ngModel)]="gender">
+            <br><ion-radio value="male">Mężczyzna</ion-radio><br>
+            <ion-radio value="female">Kobieta</ion-radio>
           </ion-radio-group>
         </ion-col>
       </ion-row>
@@ -63,6 +63,7 @@
           </ion-item>
         </ion-col>
       </ion-row>
+      <p id="wrongInput" *ngIf="wrongInput">Któraś z wartości nie została podana</p>
       <ion-button color="medium" (click)="countDemand()">Oblicz</ion-button>
       <ion-row>
         <ion-col></ion-col>

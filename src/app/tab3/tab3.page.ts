@@ -12,6 +12,8 @@ export class Tab3Page {
   BMI: any
   status: any
   resultBackground: any
+  wrongInput = false
+
   constructor() {
     
   }
@@ -22,6 +24,7 @@ export class Tab3Page {
       this.BMI = this.weight/((this.height/100)*(this.height/100))
       this.BMI = this.BMI.toPrecision(4)
       this.IsResultVisible = true
+      this.wrongInput = false
 
       if(this.BMI < 18.5){
         this.status = "Masz niedowagę"
@@ -53,10 +56,11 @@ export class Tab3Page {
       }
 
     }
-    else this.IsResultVisible = false
-
-    this.height = null
-    this.weight = null
+    else{
+      this.IsResultVisible = false
+      this.wrongInput = true
+    }
+    // this.height = null
+    // this.weight = null
   }
-  test = "Działa"
 }

@@ -7,6 +7,12 @@ import { Component } from '@angular/core';
 })
 export class Tab1Page {
 
+  firstProduct: any
+  secondProduct: any
+  wrongInput = false
+
+  products:string[] = ["chleb", "frytki"]
+
   constructor() {}
 
 }

@@ -43,3 +43,9 @@ ion-radio {
   .radio-checked.ios::part(container) {
     border-color: #15c4ec;
   }
+
+  #wrongInput{
+    color: red;
+    text-align: center;
+    font-size: 10px;
+  }

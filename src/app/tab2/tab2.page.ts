@@ -14,10 +14,11 @@ export class Tab2Page {
   demand: any
   activity: any
   resultBackground: any
+  wrongInput = false
+
   constructor() {
     
   }
-
 
   countDemand(){
     if(this.height == null ||
@@ -25,25 +26,28 @@ export class Tab2Page {
       this.age == null ||
       this.gender == null ||
       this.activity == null){
-        this.IsResultVisible = false
+      this.IsResultVisible = false
+      this.wrongInput = true
     }
     else{
-      if(this.gender){
+      this.wrongInput = false
+
+      if(this.gender == "male"){
         this.demand = (66 + 13.7 * this.weight + 5 * this.height - 6.8 * this.age) * this.activity
         this.IsResultVisible = true
-        this.demand = Math.round(100 * this.demand) / 100
+        this.demand = Math.round(this.demand)
       }
-      else if(!this.gender){
+      else if(this.gender == "female"){
         this.demand = (655 + 9.6 * this.weight + 1.8 * this.height - 4.7 * this.age) * this.activity
         this.IsResultVisible = true
-        this.demand = Math.round(100 * this.demand) / 100
+        this.demand = Math.round(this.demand)
       }
     }
 
-    this.height = null
-    this.weight = null
-    this.age = null
-    this.gender = null
-    this.activity = null
+    // this.height = null
+    // this.weight = null
+    // this.age = null
+    // this.gender = null
+    // this.activity = null
   }
 }
