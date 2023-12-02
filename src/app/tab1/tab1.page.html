@@ -25,7 +25,7 @@
         <ion-col>Wybierz pierwszy produkt
           <ion-item>
             <ion-select [(ngModel)]="firstProduct" label="" label-placement="floating">
-              <ion-select-option *ngFor="let product of products">{{product}}</ion-select-option>
+              <ion-select-option *ngFor="let product of products">{{product.name}}</ion-select-option>
             </ion-select>
           </ion-item>
         </ion-col>
@@ -34,7 +34,7 @@
         <ion-col>Wybierz drugi produkt
           <ion-item>
             <ion-select [(ngModel)]="secondProduct" label="" label-placement="floating">
-              <ion-select-option *ngFor="let product of products">{{product}}</ion-select-option>
+              <ion-select-option *ngFor="let product of products">{{product.name}}</ion-select-option>
             </ion-select>
           </ion-item>
         </ion-col>
@@ -56,19 +56,19 @@
       <ion-row>
         <ion-col>Podaj nazwę produktu
           <ion-item>
-            <ion-input label="" type="text" placeholder="nazwa"></ion-input>
+            <ion-input [(ngModel)]="productName" label="" type="text" placeholder="nazwa"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col>Podaj ilość kalorii
           <ion-item>
-            <ion-input label="" type="number" placeholder="kcal/100g"></ion-input>
+            <ion-input [(ngModel)]="calories" label="" type="number" placeholder="kcal/100g"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
       <p id="wrongInput" *ngIf="wrongInput">Któraś z wartości nie została podana</p>
-      <ion-button color="medium">Dodaj</ion-button>
+      <ion-button (click)="createProduct()" color="medium">Dodaj</ion-button>
       <ion-row>
         <ion-col></ion-col>
       </ion-row>
@@ -77,4 +77,13 @@
   <ion-fab-button>
     <ion-icon name="add"></ion-icon>
   </ion-fab-button>
+
+  <ion-list>
+    <ion-item>
+      <h2>Wszystkie produkty{{calories}}{{productName}}</h2>
+    </ion-item>
+    <ion-item *ngFor="let product of products">
+      <ion-label><span>{{product.productName}}</span><span style="position: fixed; right: 10px;">{{product.calories}}kcal/100g</span></ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
