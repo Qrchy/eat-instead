@@ -10,9 +10,13 @@ export class Tab1Page {
   firstProduct: any
   secondProduct: any
   wrongInput = false
+  matchProducts = true
 
   products:string[] = ["chleb", "frytki"]
 
   constructor() {}
 
+  addProductVisibility(){
+    this.matchProducts = false
+  }
 }

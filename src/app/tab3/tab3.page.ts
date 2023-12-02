@@ -54,13 +54,12 @@ export class Tab3Page {
         this.status = "Masz IV stopień otyłości"
         this.resultBackground = "black"
       }
-
+      this.height = null
+      this.weight = null
     }
     else{
       this.IsResultVisible = false
       this.wrongInput = true
     }
-    // this.height = null
-    // this.weight = null
   }
 }

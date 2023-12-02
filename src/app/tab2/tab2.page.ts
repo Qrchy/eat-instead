@@ -42,12 +42,12 @@ export class Tab2Page {
         this.IsResultVisible = true
         this.demand = Math.round(this.demand)
       }
-    }
 
-    // this.height = null
-    // this.weight = null
-    // this.age = null
-    // this.gender = null
-    // this.activity = null
+      this.height = null
+      this.weight = null
+      this.age = null
+      this.gender = null
+      this.activity = null
+    }
   }
 }

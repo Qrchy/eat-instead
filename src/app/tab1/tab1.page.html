@@ -15,7 +15,7 @@
       <ion-title size="large">Tab 1</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-card>
+  <ion-card *ngIf="matchProducts; else addProduct">
     <ion-card-header>
       <ion-card-title>Porównaj produkty</ion-card-title>
     </ion-card-header>
@@ -40,14 +40,14 @@
         </ion-col>
       </ion-row>
       <p id="wrongInput" *ngIf="wrongInput">Któraś z wartości nie została podana</p>
-      <ion-button color="medium">Dodaj</ion-button>
+      <ion-button color="medium">Oblicz</ion-button>
       <ion-row>
         <ion-col></ion-col>
       </ion-row>
     </ion-grid>
   </ion-card>
 
-  <ion-card>
+  <ng-template #addProduct><ion-card>
     <ion-card-header>
       <ion-card-title>Dodaj produkt</ion-card-title>
     </ion-card-header>
@@ -69,12 +69,13 @@
       </ion-row>
       <p id="wrongInput" *ngIf="wrongInput">Któraś z wartości nie została podana</p>
       <ion-button color="medium">Dodaj</ion-button>
+      <ion-button (click)="matchProducts = true" color="medium">Wróć</ion-button>
       <ion-row>
         <ion-col></ion-col>
       </ion-row>
     </ion-grid>
-  </ion-card>
-  <ion-fab-button>
-    <ion-icon name="add"></ion-icon>
+  </ion-card></ng-template>
+  <ion-fab-button *ngIf="matchProducts">
+    <ion-icon (click)="matchProducts = false" name="add"></ion-icon>
   </ion-fab-button>
 </ion-content>
