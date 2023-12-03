@@ -45,7 +45,7 @@
       <ion-row>
         <ion-col>Podaj swoją płeć
           <ion-radio-group [(ngModel)]="gender">
-            <br><ion-radio value="male">Mężczyzna</ion-radio><br>
+            <br><ion-radio value="male" style="margin-top: 10px;">Mężczyzna</ion-radio><br>
             <ion-radio value="female">Kobieta</ion-radio>
           </ion-radio-group>
         </ion-col>
@@ -71,7 +71,7 @@
     </ion-grid>
   </ion-card>
 
-  <ion-card *ngIf="IsResultVisible" [ngStyle]="{'background-color': resultBackground}">
+  <ion-card id="result" *ngIf="IsResultVisible" [ngStyle]="{'background-color': resultBackground}">
     <ion-card-header>
       <ion-card-title><p>Zapotrzebowanie kaloryczne</p> <p>{{demand}} kcal</p></ion-card-title>
     </ion-card-header>

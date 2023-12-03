@@ -43,14 +43,14 @@
     </ion-grid>
   </ion-card>
 
-  <ion-card id="result" *ngIf="IsResultVisible" [ngStyle]="{'background-color': resultBackground}">
+  <ion-card style="color: white; padding: 0;" id="result" *ngIf="IsResultVisible" [ngStyle]="{'background-color': resultBackground}">
     <ion-card-header>
-      <ion-card-title><p>Wynik BMI</p> <p>{{BMI}}</p></ion-card-title>
+      <ion-card-title><p style="color: white;">Wynik BMI</p> <p style="color: white;">{{BMI}}</p></ion-card-title>
     </ion-card-header>
     
     <ion-grid>
       <ion-row>
-        <ion-col>{{status}}</ion-col>
+        <ion-col style="text-align: center; transform: translateY(-15px);">{{status}}</ion-col>
       </ion-row>
     </ion-grid>
   </ion-card>
