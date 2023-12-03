@@ -16,11 +16,12 @@
     </ion-toolbar>
   </ion-header>
   <ion-card *ngIf="matchProducts; else addProduct">
-    <ion-card-header>
+    
+    <ion-card-header *ngIf="products">
       <ion-card-title>Porównaj produkty</ion-card-title>
     </ion-card-header>
     
-    <ion-grid>
+    <ion-grid *ngIf="products">
       <ion-row>
         <ion-col>Wybierz pierwszy produkt
           <ion-item>
@@ -33,7 +34,7 @@
       <ion-row>
         <ion-col id="weight">
           <ion-item>
-            <ion-input [(ngModel)]="firstProductWeight" label="" type="number" placeholder="waga(kg)"></ion-input>
+            <ion-input [(ngModel)]="firstProductWeight" label="" type="number" placeholder="waga(g)"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -75,6 +76,7 @@
         </ion-col>
       </ion-row>
       <p id="wrongInput" *ngIf="wrongInput">Któraś z wartości nie została podana</p>
+      <p id="wrongInput" *ngIf="exists">Produkt już istnieje</p>
       <ion-button (click)="addItem()" color="medium">Dodaj</ion-button>
       <ion-button (click)="matchProducts = true; wrongInput = false" color="medium">Wróć</ion-button>
       <ion-row>
@@ -83,9 +85,9 @@
     </ion-grid>
   </ion-card></ng-template>
 
-  <ion-card *ngIf="IsResultVisible">
+  <ion-card id="result" *ngIf="IsResultVisible">
     <ion-card-header>
-      <ion-card-title>Zamiast {{firstProductWeightValue}}kg produktu {{firstProductValue}} możesz zjeść {{resultWeight}}kg produktu {{secondProductValue}}</ion-card-title>
+      <ion-card-title>Zamiast {{firstProductWeightValue}}g produktu {{firstProductValue}} możesz zjeść {{resultWeight}}g produktu {{secondProductValue}}</ion-card-title>
     </ion-card-header>
   </ion-card>
   
@@ -93,8 +95,8 @@
     <ion-item>
       <h1>Wszystkie produkty</h1>
     </ion-item>
-    <ion-item *ngFor="let product of products; let index = index">
-      <ion-label (click)="removeItem(index)">{{product.name}}<span>{{product.calories}} kcal/100g</span></ion-label>
+    <ion-item *ngFor="let product of products;">
+      <ion-label>{{product.name}}<span>{{product.calories}} kcal/100g</span><ion-icon class="bin" color="danger" (click)="removeItem(product)" name="trash-outline"></ion-icon></ion-label>
     </ion-item>
   </ion-list>
 

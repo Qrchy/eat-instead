@@ -1,5 +1,7 @@
 {
   "name": "Eat Instead",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Storage } from '@capacitor/storage';
+import { takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-tab1',
@@ -20,14 +21,18 @@ export class Tab1Page {
   firstProductValue: any
   firstProductWeightValue: any
   secondProductValue: any
-  products: any
+  products: any = 0
   newProductName: any
   newProductCalories: any
   productsList: any
+  exists = false
 
   ngOnInit() {
     // this.setItem()
     this.getItem()
+    this.productsLengthCheck()
+
+    //this.products.sort((a: { name: string; }, b: { name: any; }) => a.name.localeCompare(b.name));
   }
 
   constructor() {}
@@ -69,55 +74,103 @@ export class Tab1Page {
     }
   }
 
+  async productsLengthCheck(): Promise<boolean> {
+    if (this.products.length === 0) {
+      await Storage.clear();
+      return false;
+    }
+    return true;
+  }
+  
+
 
   async addItem() {
     if (this.newProductCalories == null || this.newProductName == null) {
       this.wrongInput = true;
     } else {
-      const storedProducts = await Storage.get({ key: 'products' });
-  
-      if (storedProducts.value !== null) {
-        this.productsList = JSON.parse(storedProducts.value);
-  
-        this.productsList.push({
-          name: this.newProductName,
-          calories: this.newProductCalories,
+      this.exists = false
+      console.log(this.products, "works")
+      if(this.products != 0){
+        this.products.forEach((product: { name: any; }) => {
+          if(product.name === this.newProductName){
+            console.log(product.name, "exists")
+            this.exists = true
+          }
         });
-      } else {
-        this.productsList = [
-          {
+      }
+      
+      if(!this.exists){
+          const storedProducts = await Storage.get({ key: 'products' });
+        
+        if (storedProducts.value !== null) {
+          this.productsList = JSON.parse(storedProducts.value);
+    
+          this.productsList.push({
             name: this.newProductName,
             calories: this.newProductCalories,
-          },
-        ];
-      }
+          });
+        } else {
+          this.productsList = [
+            {
+              name: this.newProductName,
+              calories: this.newProductCalories,
+            },
+          ];
+        }
 
-      await Storage.set({
-        key: 'products',
-        value: JSON.stringify(this.productsList),
-      });
-  
-      const updatedProducts = await Storage.get({ key: 'products' });
-  
-      if (updatedProducts.value !== null) {
-        this.products = JSON.parse(updatedProducts.value);
+        await Storage.set({
+          key: 'products',
+          value: JSON.stringify(this.productsList),
+        });
+    
+        const updatedProducts = await Storage.get({ key: 'products' });
+    
+        if (updatedProducts.value !== null) {
+          this.products = JSON.parse(updatedProducts.value);
+        }
+
+
+        this.products.sort((a: { name: string; }, b: { name: any; }) => a.name.localeCompare(b.name));
+        
+        this.newProductName = null
+        this.newProductCalories = null
+        this.wrongInput = false
       }
-  
-      this.wrongInput = false;
+      else{
+        this.wrongInput = false
+      }
+    }
+      
+  }
+  async removeItem(productToRemove: any) {
+  const storedProducts = await Storage.get({ key: 'products' });
+
+  if (storedProducts.value !== null) {
+    this.productsList = JSON.parse(storedProducts.value);
+
+    const index = this.productsList.findIndex((product: any) => product.name === productToRemove.name && product.calories === productToRemove.calories);
+    if (index !== -1) {
+      this.productsList.splice(index, 1);
     }
   }
-  removeItem(index: any) {
-    // Remove the clicked element from the productsList array
-    this.productsList.splice(index);
-  
-    // Update the stored value
-    Storage.set({
-      key: 'products',
-      value: JSON.stringify(this.productsList),
-    });
-  
-    // Update the products variable
-    this.products = [...this.productsList];
+
+  await Storage.set({
+    key: 'products',
+    value: JSON.stringify(this.productsList),
+  });
+
+  const updatedProducts = await Storage.get({ key: 'products' });
+
+  if (updatedProducts.value !== null) {
+    this.products = JSON.parse(updatedProducts.value);
+  }
+
+    if(this.products.length == 0){
+      await Storage.clear();
+      this.products = false;
+      this.IsResultVisible = false
+    }
+    else this.products.sort((a: { name: string; }, b: { name: any; }) => a.name.localeCompare(b.name));
   }
 
   countEnergy(){

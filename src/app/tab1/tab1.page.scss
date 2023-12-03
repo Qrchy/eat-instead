@@ -21,7 +21,7 @@ ion-fab-button{
     height: 50px;
     right: 10px;
     bottom: 10px;
-    animation-name: show;
+    animation-name: showButton;
     animation-duration: 0.2s;
 }
 
@@ -47,11 +47,44 @@ ion-button{
 
 span{
     position: fixed;
+    right: 60px;
+}
+
+.bin{
+    position: fixed;
     right: 15px;
+    transform: translateY(-6px);
+}
+
+ion-input{
+    display: block;
+    margin: auto
 }
 
 h1{
     display: block;
     margin: auto;
     margin-bottom: 10px;
+}
+
+#result{
+    overflow: hidden;
+    max-height: 0;
+    animation: show 0.5s ease-out forwards;
+}
+
+#wrongInput{
+    color: red;
+    text-align: center;
+    font-size: 10px;
+  }
+
+@keyframes show {
+    from {max-height: 0;}
+    to {max-height: 500px;}
+}
+
+@keyframes showButton {
+    from {width: 0; height: 0;}
+    to {width: 50px; height: 50px;}
 }
