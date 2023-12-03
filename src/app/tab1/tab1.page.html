@@ -25,8 +25,15 @@
         <ion-col>Wybierz pierwszy produkt
           <ion-item>
             <ion-select [(ngModel)]="firstProduct" label="" label-placement="floating">
-              <ion-select-option *ngFor="let product of products">{{product}}</ion-select-option>
+              <ion-select-option *ngFor="let product of products">{{product.name}}</ion-select-option>
             </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col id="weight">
+          <ion-item>
+            <ion-input [(ngModel)]="firstProductWeight" label="" type="number" placeholder="waga(kg)"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -34,13 +41,13 @@
         <ion-col>Wybierz drugi produkt
           <ion-item>
             <ion-select [(ngModel)]="secondProduct" label="" label-placement="floating">
-              <ion-select-option *ngFor="let product of products">{{product}}</ion-select-option>
+              <ion-select-option *ngFor="let product of products">{{product.name}}</ion-select-option>
             </ion-select>
           </ion-item>
         </ion-col>
       </ion-row>
       <p id="wrongInput" *ngIf="wrongInput">Któraś z wartości nie została podana</p>
-      <ion-button color="medium">Oblicz</ion-button>
+      <ion-button (click)="countEnergy()" color="medium">Oblicz</ion-button>
       <ion-row>
         <ion-col></ion-col>
       </ion-row>
@@ -75,6 +82,22 @@
       </ion-row>
     </ion-grid>
   </ion-card></ng-template>
+
+  <ion-card *ngIf="IsResultVisible">
+    <ion-card-header>
+      <ion-card-title>Zamiast {{firstProductWeightValue}}kg produktu {{firstProductValue}} możesz zjeść {{resultWeight}}kg produktu {{secondProductValue}}</ion-card-title>
+    </ion-card-header>
+  </ion-card>
+  
+  <ion-list>
+    <ion-item>
+      <h1>Wszystkie produkty</h1>
+    </ion-item>
+    <ion-item *ngFor="let product of products">
+      <ion-label>{{product.name}}<span>{{product.calories}} kcal/100g</span></ion-label>
+    </ion-item>
+  </ion-list>
+
   <ion-fab-button *ngIf="matchProducts">
     <ion-icon (click)="matchProducts = false" name="add"></ion-icon>
   </ion-fab-button>
