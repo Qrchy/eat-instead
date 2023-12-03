@@ -63,20 +63,20 @@
       <ion-row>
         <ion-col>Podaj nazwę produktu
           <ion-item>
-            <ion-input label="" type="text" placeholder="nazwa"></ion-input>
+            <ion-input [(ngModel)]="newProductName" label="" type="text" placeholder="nazwa"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col>Podaj ilość kalorii
           <ion-item>
-            <ion-input label="" type="number" placeholder="kcal/100g"></ion-input>
+            <ion-input [(ngModel)]="newProductCalories" label="" type="number" placeholder="kcal/100g"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
       <p id="wrongInput" *ngIf="wrongInput">Któraś z wartości nie została podana</p>
-      <ion-button color="medium">Dodaj</ion-button>
-      <ion-button (click)="matchProducts = true" color="medium">Wróć</ion-button>
+      <ion-button (click)="addItem()" color="medium">Dodaj</ion-button>
+      <ion-button (click)="matchProducts = true; wrongInput = false" color="medium">Wróć</ion-button>
       <ion-row>
         <ion-col></ion-col>
       </ion-row>
@@ -89,16 +89,16 @@
     </ion-card-header>
   </ion-card>
   
-  <ion-list>
+  <ion-list *ngIf="products">
     <ion-item>
       <h1>Wszystkie produkty</h1>
     </ion-item>
-    <ion-item *ngFor="let product of products">
-      <ion-label>{{product.name}}<span>{{product.calories}} kcal/100g</span></ion-label>
+    <ion-item *ngFor="let product of products; let index = index">
+      <ion-label (click)="removeItem(index)">{{product.name}}<span>{{product.calories}} kcal/100g</span></ion-label>
     </ion-item>
   </ion-list>
 
   <ion-fab-button *ngIf="matchProducts">
-    <ion-icon (click)="matchProducts = false" name="add"></ion-icon>
+    <ion-icon (click)="matchProducts = false; wrongInput = false; IsResultVisible = false" name="add"></ion-icon>
   </ion-fab-button>
 </ion-content>
